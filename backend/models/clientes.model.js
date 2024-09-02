@@ -1,6 +1,7 @@
-const mongoose = require("../config/database");
+const mongoose =  require('mongoose')
+const conexion = require("../config/database");
 
-const schemaCliente = new mongoose.Schema({
+const schemaCliente = new conexion.Schema({
     nombre: {
         type: String,
         required: [true, 'El nombre es obligatorio'],
@@ -31,5 +32,5 @@ const schemaCliente = new mongoose.Schema({
     },
 })
 
-const cliente = mongoose.model("cliente", schemaCliente);
+const cliente = conexion.model("cliente", schemaCliente);
 module.exports = cliente;

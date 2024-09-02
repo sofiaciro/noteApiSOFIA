@@ -1,53 +1,53 @@
-const models = require("../models/productos.model")
+const models = require("../models/pedidos.model")
 
-const productoListar = async (req,res) =>{
-    let listadoProductos = await modelProducto.find();
-    if(listadoProductos)
-        res.status(200).json(listadoProductos);
+exports.pedidoListar = async (req,res) =>{
+    let listadoPedidos = await modelPedido.find();
+    if(listadoPedidos)
+        res.status(200).json(listadoPedidos);
     else
         res.status(404).json({"error": "No se encontraron productos"});
 };
-const productoEncontrado = async (req,res) =>{
-    let encontradoProducto = await modelProducto.findOne({referencias:req.params.ref});
-    if(encontradoProducto)
-        res.status(200).json(encontradoProducto);
+exports.pedidoEncontrado = async (req,res) =>{
+    let encontradoPedidos = await modelPedido.findOne({referencias:req.params.ref});
+    if(encontradoPedidos)
+        res.status(200).json(encontradoPedidos);
     else
-        res.status(404).json({"error": "Productos no encontrado"});
+        res.status(404).json({"error": "Pedido no encontrado"});
 };
-const productoAgregado = async (req,res) =>{
-    const nuevoProducto = {
-        referencia: req.body.refeferenciaProducto,
-        nombre: req.body.nombreProducto,
-        descripcion: req.body.descripcionProducto,
-        precio: req.body.precioProducto,
-        stock: req.body.stockProducto,
-        imagen: req.body.imagenProducto,
-        habilitado: true,
+exports.pedidoAgregado = async (req,res) =>{
+    const nuevoPedido = {
+        referencia: req.body.referenciaPedido,
+        cliente: req.body.clientePedido,
+        carrito: req.body.carritoPedido,
+        subtotal: req.body.subtotalPedido,
+        impuesto: req.body.impuestoPedido,
+        total: req.body.totalPedido,
+        estado: true,
     };
-    let Insercion = await modelProducto.create(nuevoProducto);
+    let Insercion = await modelPedido.create(nuevoPedido);
     if(Insercion)
         res.status(200).json({"mensaje": "bueno"});
     else
         res.status(404).json({"mensaje": "malo"});
 };
-const productoEditado = async (req,res) =>{
-    const editadoProducto = {
-        referencia: req.params.refeferenciaProducto,
-        nombre: req.body.nombreProducto,
-        descripcion: req.body.descripcionProducto,
-        precio: req.body.precioProducto,
-        stock: req.body.stockProducto,
-        imagen: req.body.imagenProducto,
-        habilitado: true,
+exports.pedidosEditado = async (req,res) =>{
+    const editadoPedido = {
+        referencia: req.body.referenciaPedido,
+        cliente: req.body.clientePedido,
+        carrito: req.body.carritoPedido,
+        subtotal: req.body.subtotalPedido,
+        impuesto: req.body.impuestoPedido,
+        total: req.body.totalPedido,
+        estado: true,
     };
-    let Actualizacion = await modelProducto.findOneAndUpdate({referencia:req.params.ref},editadoProducto);
+    let Actualizacion = await modelPedido.findOneAndUpdate({referencia:req.params.ref},editadoPedido);
     if(Actualizacion)
         res.status(200).json({"mensaje": "bueno"});
     else
         res.status(404).json({"mensaje": "malo"});
 };
-const productoEliminado = async (req,res) =>{
-    console.log(req.params.id , req.body.referenciaProducto)
+exports.pedidosEliminado = async (req,res) =>{
+    console.log(req.params.id , req.body.referenciaPedido)
     let eliminacion = await modelProducto.findOneAndDelete({referencias:req.params.id});
     if(eliminacion)
         res.status(200).json({"mensaje":"eliminacion exitosa"});

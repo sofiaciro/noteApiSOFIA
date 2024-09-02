@@ -1,54 +1,48 @@
-const models = require("../models/productos.model")
+const models = require("../models/clientes.model")
 
-const productoListar = async (req,res) =>{
-    let listadoProductos = await modelProducto.find();
-    if(listadoProductos)
-        res.status(200).json(listadoProductos);
+ exports.clientesListar = async (req,res) =>{
+    let listadoClientes = await modelCliente.find();
+    if(listadoClientes)
+        res.status(200).json(listadoClientes);
     else
-        res.status(404).json({"error": "No se encontraron productos"});
+        res.status(404).json({"error": "No se encontraron ningun cliente"});
 };
-const productoEncontrado = async (req,res) =>{
-    let encontradoProducto = await modelProducto.findOne({referencias:req.params.ref});
-    if(encontradoProducto)
-        res.status(200).json(encontradoProducto);
+exports.clientesEncontrado = async (req,res) =>{
+    let encontradoCliente = await encontradoCliente.findOne({referencias:req.params.ref});
+    if(encontradoCliente)
+        res.status(200).json(encontradoCliente);
     else
-        res.status(404).json({"error": "Productos no encontrado"});
+        res.status(404).json({"error": "cliente no encontrado"});
 };
-const productoAgregado = async (req,res) =>{
+exports.clientesAgregado = async (req,res) =>{
     const nuevoProducto = {
         referencia: req.body.refeferenciaProducto,
-        nombre: req.body.nombreProducto,
-        descripcion: req.body.descripcionProducto,
-        precio: req.body.precioProducto,
-        stock: req.body.stockProducto,
-        imagen: req.body.imagenProducto,
-        habilitado: true,
+        nombre: req.body.nombreCliente,
+        telefono: req.body.telefonoCliente,
+        direccion: req.body.direccionCliente,
+        habitacion: req.body.habitacionCliente,
+        usuario: true,
     };
     let Insercion = await modelProducto.create(nuevoProducto);
-    if(Insercion)
-        res.status(200).json({"mensaje": "bueno"});
-    else
-        res.status(404).json({"mensaje": "malo"});
 };
-const productoEditado = async (req,res) =>{
-    const editadoProducto = {
-        referencia: req.params.refeferenciaProducto,
-        nombre: req.body.nombreProducto,
-        descripcion: req.body.descripcionProducto,
-        precio: req.body.precioProducto,
-        stock: req.body.stockProducto,
-        imagen: req.body.imagenProducto,
-        habilitado: true,
+exports.clientesEditado = async (req,res) =>{
+    const editadoCliente = {
+        referencia: req.body.refeferenciaProducto,
+        nombre: req.body.nombreCliente,
+        telefono: req.body.telefonoCliente,
+        direccion: req.body.direccionCliente,
+        habitacion: req.body.habitacionCliente,
+        usuario: true,
     };
-    let Actualizacion = await modelProducto.findOneAndUpdate({referencia:req.params.ref},editadoProducto);
+    let Actualizacion = await modelCliente.findOneAndUpdate({referencia:req.params.ref},editadoCliente);
     if(Actualizacion)
         res.status(200).json({"mensaje": "bueno"});
     else
         res.status(404).json({"mensaje": "malo"});
 };
-const productoEliminado = async (req,res) =>{
+exports.clientesEliminado = async (req,res) =>{
     console.log(req.params.id , req.body.referenciaProducto)
-    let eliminacion = await modelProducto.findOneAndDelete({referencias:req.params.id});
+    let eliminacion = await modelCliente.findOneAndDelete({referencias:req.params.id});
     if(eliminacion)
         res.status(200).json({"mensaje":"eliminacion exitosa"});
     else

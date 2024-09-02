@@ -1,6 +1,7 @@
-const mongoose = require("../config/database");
+const mongoose =  require('mongoose')
+const conexion = require("../config/database");
 
-const schemaProducto = new mongoose.Schema({
+const schemaProducto = new conexion.Schema({
     referencia:{
         typr: String,
         required: [true, 'La referencia es Obligatoria'],
@@ -33,5 +34,5 @@ const schemaProducto = new mongoose.Schema({
     },
 })
 
-const producto = mongoose.model("producto", schemaProducto);
+const producto = conexion.model("producto", schemaProducto);
 module.exports = producto;
