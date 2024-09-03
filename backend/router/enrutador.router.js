@@ -3,57 +3,54 @@ const controllerClientes = require('../controller/clientes.controller');
 const controllerPedidos = require('../controller/pedidos.controller');
 const controllerProductos = require('../controller/productos.controller');
 const controllerUsuarios = require('../controller/usuarios.controller');
+const path = require('path')
 
 const route = express.Router();
 
+route.get("/login", function(req,res){
+    console.log(path.__dirname);
+    res.render('pages/login');
+});
+route.get("/catalogo", async (req,res)=>{
+    const listadoProductos = await controllerProductos.productoListar()
+    console.log(path.__dirname);
+    res.render('pages/catalogo',{listadoProductos});
+});
+route.get("/index", function(req,res){
+    console.log(path.__dirname);
+    res.render('pages/index');
+});
+
+
 // Cliente
 route.get('/clientes', controllerClientes.clientesListar);
-route.get('/clientes', controllerClientes.clientesEncontrado);
-route.get('/clientes', controllerClientes.clientesAgregado);
-route.get('/clientes', controllerClientes.clientesEditado);
-route.get('/clientes', controllerClientes.clientesEliminado);
+route.get('/clientes/:ref', controllerClientes.clientesEncontrado);
+route.post('/clientes', controllerClientes.clientesAgregado);
+route.put('/clientes/:ref', controllerClientes.clientesEditado);
+route.delete('/clientes/:ref', controllerClientes.clientesEliminado);
 
 // Producto
-route.get('/productos', controllerPedidos.productoListar);
-route.get('/productos', controllerPedidos.productoEncontrado);
-route.get('/productos', controllerPedidos.productoAgregado);
-route.get('/productos', controllerPedidos.productoEditado);
-route.get('/productos', controllerPedidos.productoEliminado);
+route.get('/productos/', controllerProductos.productoListar);
+route.get('/productos/:ref', controllerProductos.productoEncontrado);
+route.post('/productos', controllerProductos.productoAgregado);
+route.put('/productos/:ref', controllerProductos.productoEditado);
+route.delete('/productos/:ref', controllerProductos.productoEliminado);
 
 
 // Pedido
-route.get('/pedidos', controllerProductos.pedidoListar);
-route.get('/pedidos', controllerProductos.pedidoEncontrado);
-route.get('/pedidos', controllerProductos.pedidoAgregado);
-route.get('/pedidos', controllerProductos.pedidosEditado);
-route.get('/pedidos', controllerProductos.pedidosEliminado);
+route.get('/pedidos', controllerPedidos.pedidoListar);
+route.get('/pedidos/:ref', controllerPedidos.pedidoEncontrado);
+route.post('/pedidos', controllerPedidos.pedidoAgregado);
+route.put('/pedidos/:ref', controllerPedidos.pedidosEditado);
+route.delete('/pedidos/:ref', controllerPedidos.pedidosEliminado);
 
 
 // Usuario
 route.get('/usuarios', controllerUsuarios.usuarioListar);
-route.get('/usuarios', controllerUsuarios.usuarioEncontrado);
-route.get('/usuarios', controllerUsuarios.usuarioAgregado);
-route.get('/usuarios', controllerUsuarios.usuarioEditado);
-route.get('/usuarios', controllerUsuarios.usuarioEliminado);
+route.get('/usuarios/:ref', controllerUsuarios.usuarioEncontrado);
+route.post('/usuarios', controllerUsuarios.usuarioAgregado);
+route.put('/usuarios/:ref', controllerUsuarios.usuarioEditado);
+route.delete('/usuarios/:ref', controllerUsuarios.usuarioEliminado);
 
 
 module.exports = route
-/* app.set('view engaine', 'ejs');
-const path = require('path');
-app.set('views', path.join(__dirname, './frontend/views'));
-
-app.get("/index", function(req,res){
-    console.log(path.__dirname);
-    res.render('pages/index');
-});
-app.get("/login", function(req,res){
-    console.log(path.__dirname);
-    res.render('pages/login');
-});app.get("/catalogo", function(req,res){
-    console.log(path.__dirname);
-    res.render('pages/catalogo');
-});
-app.listen(process.env.PORT, () => {
-    console.log("servidor en linea");
-});
-*/

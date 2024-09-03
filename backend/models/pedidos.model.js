@@ -6,7 +6,7 @@ const schemaPedido  = new conexion.Schema({
         type: mongoose.SchemaTypes.ObjectId
     },
     carrito: {
-        any:[]
+        type: Array
     },
     subtotal: {
         type: Number,
@@ -22,8 +22,8 @@ const schemaPedido  = new conexion.Schema({
     },
     estado: {
         type: String,
-        required: [true,],
-        enum: ['creado', 'pagado','enviado','recibido','cancelado','finalizado'],
+        required: true,
+        enum: ['creado','pagado','enviado','recibido','cancelado','finalizado'],
     },
 
 });

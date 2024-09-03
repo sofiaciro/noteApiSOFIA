@@ -1,16 +1,17 @@
-const models = require("../models/productos.model")
+const modelProducto = require("../models/productos.model")
 
 exports.productoListar = async (req,res) =>{
     let listadoProductos = await modelProducto.find();
     if(listadoProductos)
-        res.status(200).json(listadoProductos);
+        //res.status(200).json(listadoProductos);
+        return listadoProductos
     else
         res.status(404).json({"error": "No se encontraron productos"});
 };
 exports.productoEncontrado = async (req,res) =>{
     let encontradoProducto = await modelProducto.findOne({referencias:req.params.ref});
     if(encontradoProducto)
-        res.status(200).json(encontradoProducto);
+        return listadoProductos
     else
         res.status(404).json({"error": "Productos no encontrado"});
 };
