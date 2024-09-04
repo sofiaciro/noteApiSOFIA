@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+	<%- include('../../partials/head'); %>
+		<style>
+			.contenedor {
+				margin-top: 20px;
+			}
+		</style>
+</head>
+
+<body>
+	<%- include('../../partials/header'); %>
+		<div class="contenedor">
+			<table class="table">
+				<thead>
+					<th scope="col">Referencia</th>
+					<th scope="col">Productos</th>
+					<th scope="col">Precio</th>
+					<th scope="col">Descripcion</th>
+					<th scope="col">Imagenes</th>
+					<th scope="col">Acciones</th>
+				</thead>
+				<tbody>
+					<% listadoProductos.forEach(producto=> { %>
+						<tr scope="row"></tr>
+						<td>
+							<%= producto.referencia %>
+						</td>
+						<td>
+							<%= producto.nombre %>
+						</td>
+						<td>
+							<%= producto.precio %>
+						</td>
+						<td>
+							<%= producto.descripcion %>
+						</td>
+						<td><i class="bi bi-card-image"></i></td>
+						<td>
+							<a type="button" class="btn btn-outline-primary" href="/editar_inventario/">
+								<i class="bi bi-pencil-square"></i> </a>
+							<a class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
+						</td>
+						</tr>
+						<%})%>
+				</tbody>
+			</table>
+		</div>
+		<footer> <%- include ('../../partials/footer'); %></footer>
+</body>

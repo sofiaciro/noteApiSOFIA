@@ -3,9 +3,26 @@
 
 <head>
     <%- include('../partials/head'); %>
+    <style>
+        .contenedor{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 30px;
+            height: 800px;
+        }
+        .formulario{
+            padding: 50px;
+            border-radius: 15px;
+            border: solid 1px rgb(231, 231, 231);
+        }
+    </style>
 </head>
 <body>
-    <form class="container">
+    <div class="contenedor">
+        <h2>Registro</h2>
+    <form class="formulario">
         <div class="form-group">
             <label for="exampleInputEmail1">Nombre</label>
             <input type="text" name="nombre" class="form-control" placeholder="Ingrese su Nombre">
@@ -26,7 +43,11 @@
             <input type="password"  name="pass" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su Contraseña">
         </div>
         <button type="submit" class="btn btn-primary" style="margin-top: 10px;" >Continuar</button>
+        <div>
+            <a href="/index" style="text-decoration: none; color: red; margin-top: 30px; font-size: 15px;">Cancelar</a>
+        </div>
     </form>
+</div>
     <% if (typeof msg !== 'undefined') { %>
         <p><%= msg %></p>
       <% } %>

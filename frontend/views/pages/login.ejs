@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <%- include('../partials/head'); %>
+    <style>
+        .contenedor{
+            margin-top: 20px;
+            padding: 30px 50px;
+            border-radius: 15px;
+            border: solid 1px rgb(231, 231, 231);       
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <%- include('../partials/body'); %>
-            <form class="container" method="GET">
+    <div>
+        <%- include('../partials/header'); %>
+        <form class="container contenedor" method="GET">
+                <h2>Login</h2>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Correo</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  placeholder="Ingrese su correo electronico">

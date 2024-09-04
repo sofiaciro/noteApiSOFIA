@@ -4,34 +4,49 @@ const controllerPedidos = require('../controller/pedidos.controller');
 const controllerProductos = require('../controller/productos.controller');
 const controllerUsuarios = require('../controller/usuarios.controller');
 const path = require('path');
-const Usuario = require('../models/usuarios.model')
-const { connection } = require('mongoose');
 
 const route = express.Router();
 
-route.get("/login", async (req, res) => {
-    const loginUsuario = await controllerUsuarios.usuarioLogin()
+// Login
+route.get("/login", function (req, res) {
     console.log(path.__dirname);
-    res.render('pages/register', { loginUsuario });
+    res.render('pages/login');
 });
-route.get("/register", async (req, res) => {
-    const nuevoUsuario = await controllerUsuarios.usuarioAgregado()
+
+// Register
+route.get("/register", function (req, res) {
     console.log(path.__dirname);
-    res.render('pages/register', { nuevoUsuario });
+    res.render('pages/register');
 });
+
+// Index
+route.get("/index", function (req, res) {
+    console.log(path.__dirname);
+    res.render('pages/index');
+});
+
+// Inventario
+route.get("/inventario", async (req, res) => {
+    const listadoProductos = await controllerProductos.productoListar()
+    console.log(path.__dirname);
+    res.render('pages/inventario/inventario', { listadoProductos });
+});
+route.get("/editar_inventario", function (req, res) {
+    console.log(path.__dirname);
+    res.render('pages/inventario/editar_inventario');
+});
+
+// Catalogo
 route.get("/catalogo", async (req, res) => {
     const listadoProductos = await controllerProductos.productoListar()
     console.log(path.__dirname);
     res.render('pages/catalogo', { listadoProductos });
 });
-route.get("/index", function (req, res) {
+
+// Carrito
+route.get("/carrito", function (req, res) {
     console.log(path.__dirname);
-    res.render('pages/index');
-});
-route.get("/carrito", async (req, res) => {
-    const listadoProductos = await controllerProductos.productoListar()
-    console.log(path.__dirname);
-    res.render('pages/carrito', { listadoProductos });
+    res.render('pages/carrito');
 });
 
 
@@ -49,7 +64,6 @@ route.post('/productos', controllerProductos.productoAgregado);
 route.put('/productos/:ref', controllerProductos.productoEditado);
 route.delete('/productos/:ref', controllerProductos.productoEliminado);
 
-
 // Pedido
 route.get('/pedidos', controllerPedidos.pedidoListar);
 route.get('/pedidos/:ref', controllerPedidos.pedidoEncontrado);
@@ -57,14 +71,12 @@ route.post('/pedidos', controllerPedidos.pedidoAgregado);
 route.put('/pedidos/:ref', controllerPedidos.pedidosEditado);
 route.delete('/pedidos/:ref', controllerPedidos.pedidosEliminado);
 
-
 // Usuario
 route.get('/usuarios', controllerUsuarios.usuarioListar);
 route.get('/usuarios/:ref', controllerUsuarios.usuarioEncontrado);
 route.post('/usuarios', controllerUsuarios.usuarioAgregado);
 route.put('/usuarios/:ref', controllerUsuarios.usuarioEditado);
 route.delete('/usuarios/:ref', controllerUsuarios.usuarioEliminado);
-route.post('/usuarios', controllerUsuarios.usuarioLogin);
 
 
 module.exports = route

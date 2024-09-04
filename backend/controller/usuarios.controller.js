@@ -16,7 +16,7 @@ exports.usuarioEncontrado = async (req,res) =>{
 };
 exports.usuarioAgregado = async (req,res) =>{
     const nuevoUsuario = {
-        referencia: req.params.referenciaUsuario,
+        referencia: req.body.referenciaUsuario,
         correo: req.body.correoUsuario,
         pass: req.body.passUsuario,
         rol: req.body.rolUsuario,
@@ -52,8 +52,8 @@ exports.usuarioEliminado = async (req,res) =>{
 };
 
 // Manejar el login de usuarios
-exports.usuarioLogin = async (req, res) => {
-    const { correo, pass } = req.body;
+//exports.usuarioLogin = async (req, res) => {
+/*    const { correo, pass } = req.body;
 
     try {
         if (!correo || !pass) {
@@ -79,4 +79,4 @@ exports.usuarioLogin = async (req, res) => {
         console.error(err.message);
         res.status(500).json({ error: 'Error en el servidor' });
     }
-};
+};*/
