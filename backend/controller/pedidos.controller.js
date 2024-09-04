@@ -1,4 +1,4 @@
-const models = require("../models/pedidos.model")
+const modelPedido = require("../models/pedidos.model")
 
 exports.pedidoListar = async (req,res) =>{
     let listadoPedidos = await modelPedido.find();
