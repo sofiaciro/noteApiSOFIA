@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body>
+    <form class="container">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nombre</label>
+            <input type="text" name="nombre" class="form-control" placeholder="Ingrese su Nombre">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Correo</label>
+            <input type="email"  name="correo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Ingrese su correo electronico">
+        </div><div class="form-group">
+            <label for="exampleInputEmail1">Direccion</label>
+            <input type="text"  name="direccion" class="form-control"placeholder="Ingrese su dirección">
+        </div><div class="form-group">
+            <label for="exampleInputEmail1">telefono</label>
+            <input type="number"  name="telefono" class="form-control" placeholder="Ingrese su telefono">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input type="password"  name="pass" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su Contraseña">
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px;" >Continuar</button>
+    </form>
+    <% if (typeof msg !== 'undefined') { %>
+        <p><%= msg %></p>
+      <% } %>
+</body>
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</html>

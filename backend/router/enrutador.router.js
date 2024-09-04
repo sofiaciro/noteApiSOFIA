@@ -3,27 +3,35 @@ const controllerClientes = require('../controller/clientes.controller');
 const controllerPedidos = require('../controller/pedidos.controller');
 const controllerProductos = require('../controller/productos.controller');
 const controllerUsuarios = require('../controller/usuarios.controller');
-const path = require('path')
+const path = require('path');
+const Usuario = require('../models/usuarios.model')
+const { connection } = require('mongoose');
 
 const route = express.Router();
 
-route.get("/login", function(req,res){
+route.get("/login", async (req, res) => {
+    const loginUsuario = await controllerUsuarios.usuarioLogin()
     console.log(path.__dirname);
-    res.render('pages/login');
+    res.render('pages/register', { loginUsuario });
 });
-route.get("/catalogo", async (req,res)=>{
+route.get("/register", async (req, res) => {
+    const nuevoUsuario = await controllerUsuarios.usuarioAgregado()
+    console.log(path.__dirname);
+    res.render('pages/register', { nuevoUsuario });
+});
+route.get("/catalogo", async (req, res) => {
     const listadoProductos = await controllerProductos.productoListar()
     console.log(path.__dirname);
-    res.render('pages/catalogo',{listadoProductos});
+    res.render('pages/catalogo', { listadoProductos });
 });
-route.get("/inventario", async (req,res)=>{
-    const listadoProductos = await controllerProductos.productoListar()
-    console.log(path.__dirname);
-    res.render('pages/inventario',{listadoProductos});
-});
-route.get("/index", function(req,res){
+route.get("/index", function (req, res) {
     console.log(path.__dirname);
     res.render('pages/index');
+});
+route.get("/carrito", async (req, res) => {
+    const listadoProductos = await controllerProductos.productoListar()
+    console.log(path.__dirname);
+    res.render('pages/carrito', { listadoProductos });
 });
 
 
@@ -56,6 +64,7 @@ route.get('/usuarios/:ref', controllerUsuarios.usuarioEncontrado);
 route.post('/usuarios', controllerUsuarios.usuarioAgregado);
 route.put('/usuarios/:ref', controllerUsuarios.usuarioEditado);
 route.delete('/usuarios/:ref', controllerUsuarios.usuarioEliminado);
+route.post('/usuarios', controllerUsuarios.usuarioLogin);
 
 
 module.exports = route

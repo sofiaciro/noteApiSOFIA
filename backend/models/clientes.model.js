@@ -18,13 +18,10 @@ const schemaCliente = new conexion.Schema({
     },
     direccion: {
         type: String,
-        default: [0, 'por defecto el precio es 0'],
-        min: [0, 'El precio minimo es 0'],
     },
-    habilitado: {
-        type: Number,
-        default: [0, 'por defecto el stock es 0'],
-        min: [0, 'El stock minimo es 0'],
+    habilitado:{
+        type: Boolean,
+        default: true
     },
     usuario: {
         type: String,

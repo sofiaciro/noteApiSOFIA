@@ -1,4 +1,4 @@
-const models = require("../models/productos.model")
+const modelUsuario = require("../models/productos.model")
 
 exports.usuarioListar = async (req,res) =>{
     let listadoUsuarios = await modelUsuario.find();
@@ -16,7 +16,7 @@ exports.usuarioEncontrado = async (req,res) =>{
 };
 exports.usuarioAgregado = async (req,res) =>{
     const nuevoUsuario = {
-        referencia: req.params.refeferenciaUsuario,
+        referencia: req.params.referenciaUsuario,
         correo: req.body.correoUsuario,
         pass: req.body.passUsuario,
         rol: req.body.rolUsuario,
@@ -49,4 +49,34 @@ exports.usuarioEliminado = async (req,res) =>{
         res.status(200).json({"mensaje":"eliminacion exitosa"});
     else
         res.status(404).json({"mensaje": "error"});
+};
+
+// Manejar el login de usuarios
+exports.usuarioLogin = async (req, res) => {
+    const { correo, pass } = req.body;
+
+    try {
+        if (!correo || !pass) {
+            return res.status(400).json({ msg: 'Todos los campos son obligatorios' });
+        }
+
+        let usuario = await modelUsuario.findOne({ correo });
+        if (!usuario) {
+            return res.status(400).json({ msg: 'Credenciales inválidas' });
+        }
+
+        const isMatch = await bcrypt.compare(pass, usuario.pass);
+        if (!isMatch) {
+            return res.status(400).json({ msg: 'Credenciales inválidas' });
+        }
+
+        const payload = { usuario: { id: usuario.id } };
+        jwt.sign(payload, config.jwtSecret, { expiresIn: 3600 }, (err, token) => {
+            if (err) throw err;
+            res.json({ token });
+        });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
 };

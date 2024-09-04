@@ -2,24 +2,27 @@
 
 <head>
 	<%- include('../partials/head'); %>
+	<link rel="stylesheet" href="/styles/catalogo.css">
 </head>
 
 <body class="container">
 	<%- include('../partials/body'); %>
-		<div >
-			<% listadoProductos.forEach(producto=> { %>
-				<div class="card" style="width: 18rem;">
-					<div class="card-body">
-						<h3>
-							<%= producto.nombre %>
-						</h3>
-						<h5>precio : <%= producto.precio %></h5>
-						<p class="card-text">
-							<%= producto.descripcion %>
-						</p>
-					</div>
+	<div class="carta-catalogo">
+		<% listadoProductos.forEach(producto=> { %>
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+					<h3>
+						<%= producto.nombre %>
+					</h3>
+					<h5>precio : <%= producto.precio %>
+					</h5>
+					<p class="card-text">
+						<%= producto.descripcion %>
+					</p>
 				</div>
-				<%})%>
-		</div>
-		<%- include ('../partials/footer'); %>
+			</div>
+		<%})%>
+	</div>
 </body>
+<footer>	<%- include ('../partials/footer'); %>
+</footer>
