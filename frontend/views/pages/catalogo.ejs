@@ -1,33 +1,25 @@
 <html lang="en">
+
 <head>
 	<%- include('../partials/head'); %>
 </head>
+
 <body class="container">
 	<%- include('../partials/body'); %>
-	<table class="table">
-		<thead>
-			<th scope="col">Referencia</th>
-			<th scope="col">Productos</th>
-			<th scope="col">Precio</th>
-			<th scope="col">Descripcion</th>
-			<th scope="col">Imagenes</th>
-			<th scope="col">Acciones</th>
-		</thead>
-		<tbody>
+		<div >
 			<% listadoProductos.forEach(producto=> { %>
-				<tr scope="row"></tr>
-					<td><%= producto.referencia %></td>
-					<td><%= producto.nombre %></td>
-					<td><%= producto.precio %></td>
-					<td><%= producto.descripcion %></td>
-					<td><i class="bi bi-card-image"></i></td>
-					<td>
-						<button class="btn btn-outline-primary" onclick=""><i class="bi bi-pencil-square"></i></button>
-						<button class="btn btn-outline-danger" onclick=""><i class="bi bi-trash"></i></button>
-					</td>
-				</tr>
+				<div class="card" style="width: 18rem;">
+					<div class="card-body">
+						<h3>
+							<%= producto.nombre %>
+						</h3>
+						<h5>precio : <%= producto.precio %></h5>
+						<p class="card-text">
+							<%= producto.descripcion %>
+						</p>
+					</div>
+				</div>
 				<%})%>
-		</tbody>
-	</table>
-	<%- include ('../partials/footer'); %>
+		</div>
+		<%- include ('../partials/footer'); %>
 </body>

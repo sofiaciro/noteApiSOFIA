@@ -16,6 +16,11 @@ route.get("/catalogo", async (req,res)=>{
     console.log(path.__dirname);
     res.render('pages/catalogo',{listadoProductos});
 });
+route.get("/inventario", async (req,res)=>{
+    const listadoProductos = await controllerProductos.productoListar()
+    console.log(path.__dirname);
+    res.render('pages/inventario',{listadoProductos});
+});
 route.get("/index", function(req,res){
     console.log(path.__dirname);
     res.render('pages/index');
