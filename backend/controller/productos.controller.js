@@ -17,7 +17,7 @@ exports.productoEncontrado = async (req, res) => {
 };
 exports.productoAgregado = async (req, res) => {
     const nuevoProducto = {
-        referencia: req.params.refeferenciaProducto,
+        referencia: req.params.ref,
         nombre: req.body.nombreProducto,
         descripcion: req.body.descripcionProducto,
         precio: req.body.precioProducto,
@@ -27,13 +27,13 @@ exports.productoAgregado = async (req, res) => {
     };
     let Insercion = await modelProducto.create(nuevoProducto);
     if (Insercion)
-        res.status(200).json({ "mensaje": "bueno" });
+        res.redirect('/inventario');
     else
         res.status(404).json({ "mensaje": "malo" });
 };
 exports.productoEditado = async (req, res) => {
     const editadoProducto = {
-        referencia: req.params.refeferenciaProducto,
+        referencia: req.params.ref,
         nombre: req.body.nombreProducto,
         descripcion: req.body.descripcionProducto,
         precio: req.body.precioProducto,
@@ -43,7 +43,7 @@ exports.productoEditado = async (req, res) => {
     };
     let Actualizacion = await modelProducto.findOneAndUpdate({ referencia: req.params.ref }, editadoProducto);
     if (Actualizacion)
-        res.status(200).json({ "mensaje": "bueno" });
+    res.redirect('/inventario');
     else
         res.status(404).json({ "mensaje": "malo" });
 };

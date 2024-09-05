@@ -31,10 +31,10 @@ route.get("/inventario", async (req, res) => {
     console.log(path.__dirname);
     res.render('pages/inventario/inventario', { listadoProductos });
 });
-route.put("/inventario/:ref", async (req, res) => {
-    const productoEditado = await controllerProductos.productoEditado()
-    console.log(path.__dirname);
-    res.render('pages/inventario/inventario', { productoEditado });
+route.post("/inventario/:ref", async (req, res) => {
+    await controllerProductos.productoEditado(req, res)
+    console.log();
+    
 });
 route.get("/editar_inventario/:ref", async (req, res) =>{
     // console.log(req.params);

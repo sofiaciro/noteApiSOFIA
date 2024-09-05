@@ -6,24 +6,26 @@
 <body>
     <div>
         <h2>Editar Producto</h2>
-        <form>
+        <form action="/inventario/<%= producto.referencia %>" method="post">
             <div class="form-group">
-              <label for="exampleInputEmail1">Nombre</label>
-              <input type="text" class="form-control" value="<%= producto.nombre %>">
+              <label >Nombre</label>
+              <input name="nombreProducto" type="text" class="form-control" value="<%= producto.nombre %>">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Precio</label>
-              <input type="text" class="form-control" value="<%= producto.precio %>">
+              <label >Precio</label>
+              <input name="precioProducto" type="text" class="form-control" value="<%= producto.precio %>">
             </div><div class="form-group">
-              <label for="exampleInputEmail1">Descripcion</label>
-              <input type="text" class="form-control" value="<%= producto.descripcion %>">
+              <label>Descripcion</label>
+              <input name="descripcionProducto" type="text" class="form-control" value="<%= producto.descripcion %>">
+            </div></div><div class="form-group">
+              <label >Stock</label>
+              <input name="stockProducto" type="text" class="form-control" value="<%= producto.stock %>">
             </div><div class="form-group">
-              <label for="exampleInputEmail1">Imagen</label>
+              <label >Imagen</label>
               <input type="text" class="form-control" >
             </div>
             <div>
-              <a type="submit" class="btn btn-primary" href="/inventario/<%= productoEditado.referencia %>">Editar</a>
-              <button type="submit" class="btn btn-outline-danger">Cancelar</button>
+              <button type="submit" class="btn btn-primary" >Editar</button>
             </div>
           </form>
     </div>

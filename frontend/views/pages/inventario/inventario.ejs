@@ -40,12 +40,13 @@
 						<td>
 							<a type="button" class="btn btn-outline-primary" href="/editar_inventario/<%= producto.referencia %>">
 								<i class="bi bi-pencil-square"></i> </a>
-							<a class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
+							<button class="btn btn-outline-danger" onclick=""><i class="bi bi-trash"></i></button>
 						</td>
 						</tr>
 						<%})%>
 				</tbody>
 			</table>
 		</div>
-		<footer> <%- include ('../../partials/footer'); %></footer>
+		<footer> 
+			<%- include ('../../partials/footer'); %></footer>
 </body>
