@@ -16,7 +16,7 @@ exports.pedidoEncontrado = async (req,res) =>{
 };
 exports.pedidoAgregado = async (req,res) =>{
     const nuevoPedido = {
-        referencia: req.body.referenciaPedido,
+        referencia: req.params.referenciaPedido,
         cliente: req.body.clientePedido,
         carrito: req.body.carritoPedido,
         subtotal: req.body.subtotalPedido,
