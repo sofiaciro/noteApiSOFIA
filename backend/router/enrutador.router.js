@@ -34,12 +34,18 @@ route.get("/inventario", async (req, res) => {
 route.post("/inventario/:ref", async (req, res) => {
     await controllerProductos.productoEditado(req, res)
     console.log();
-    
+});
+route.get("/nuevo_producto", function (req, res) {
+    console.log(path.__dirname);
+    res.render('pages/inventario/nuevo_producto');
+});
+route.post("/nuevo", async (req, res) => {
+    await controllerProductos.productoAgregado(req, res)
+    console.log();
+    res.render('pages/inventario/nuevo_producto',{ producto : productoAgregado });
 });
 route.get("/editar_inventario/:ref", async (req, res) =>{
-    // console.log(req.params);
     const encontradoProducto = await controllerProductos.productoEncontrado(req, res);
-    // console.log(path.__dirname);
     res.render('pages/inventario/editar_inventario',{ producto : encontradoProducto });
 });
 
