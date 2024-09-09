@@ -32,7 +32,7 @@ exports.pedidoAgregado = async (req,res) =>{
 };
 exports.pedidosEditado = async (req,res) =>{
     const editadoPedido = {
-        referencia: req.body.referenciaPedido,
+        referencia: req.params.referenciaPedido,
         cliente: req.body.clientePedido,
         carrito: req.body.carritoPedido,
         subtotal: req.body.subtotalPedido,

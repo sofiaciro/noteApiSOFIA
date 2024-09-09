@@ -4,8 +4,7 @@ const conexion = require("../config/database");
 const schemaProducto = new conexion.Schema({
     referencia:{
         type: String,
-        required: [true, 'La referencia es Obligatoria'],
-    },
+        required: [true, 'La referencia es Obligatoria']},
     nombre: {
         type: String,
         required: [true, 'Asignar un nombre es obligatorio'],

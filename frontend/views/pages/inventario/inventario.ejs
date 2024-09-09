@@ -12,6 +12,7 @@
 <body>
 	<%- include('../../partials/header'); %>
 		<div class="contenedor">
+			<a href="/nuevo_producto">Añadir</a>
 			<table class="table">
 				<thead>
 					<th scope="col">Referencia</th>
@@ -40,7 +41,7 @@
 						<td>
 							<a type="button" class="btn btn-outline-primary" href="/editar_inventario/<%= producto.referencia %>">
 								<i class="bi bi-pencil-square"></i> </a>
-							<button class="btn btn-outline-danger" onclick=""><i class="bi bi-trash"></i></button>
+							<button class="btn btn-outline-danger" onclick="eliminarProducto()"><i class="bi bi-trash"></i></button>
 						</td>
 						</tr>
 						<%})%>

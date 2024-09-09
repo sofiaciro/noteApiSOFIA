@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <%- include ('../../partials/head'); %>
+</head>
+
+<body>
+    <div>
+        <h2>Nuevo Producto</h2>
+        <form action="/nuevo" method="post">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input name="nombreProducto" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Precio</label>
+                <input name="precioProducto" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Descripcion</label>
+                <input name="descripcionProducto" type="text" class="form-control">
+            </div>
+    </div>
+    <div class="form-group">
+        <label>Stock</label>
+        <input name="stockProducto" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Imagen</label>
+        <input name="imagenProducto" type="text" class="form-control">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Crear</button>
+    </div>
+    </form>
+    </div>
+</body>
+<footer>
+    <%- include ('../../partials/footer'); %>
+</footer>
+
+</html>
